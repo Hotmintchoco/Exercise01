@@ -14,6 +14,12 @@ public class MemberMenu {
 		System.out.println("현재 등록된 회원수는 " + mManager.memberCount + "명 입니다.");
 		
 		int input = sc.nextInt();
+		
+		while (true) {
+			if (input == 1) {
+				mManager.memberInput();
+			}
+		}
 	}
 	
 	public void searchMenu(){
