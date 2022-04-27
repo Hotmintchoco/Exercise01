@@ -1,85 +1,83 @@
 package com.ezen;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.ToString;
 
 public class CarTest {
-
 	public static void main(String[] args) {
 		
-		Sedan se = new Sedan();
-		se.setColor("Red");
-		System.out.println(se.getColor());
+		Sedan se = new Sedan("white",5,4);
+//		se.color = "white";
+//		se.passenger = 5;
+//		se.tire = 4;
 		
-		se.setPassenger(4);
-		System.out.println(se.getPassenger() + "ëª…");
+		System.out.println(se.color + ", " + se.passenger + "," + se.tire);
+		se.run();
+		Bus bu = new Bus();
+		bu.passenger = 15;
+		bu.tire = 6;
+		System.out.println(bu.passenger + "," + bu.tire);
 		
-		Sedan se2 = new Sedan("Bule", 2, 4, 3);
-		System.out.println(se2.getPassenger() + "ëª…");
-		System.out.println(se2.getColor());
-		
-		Sports sp = new Sports();
-		sp.setColor("red");
-		System.out.println(sp.getColor());
-		
-		Sports sp2 = new Sports("yellow", 2, 4, 1, 5000);
-		sp2.run();
+		Sports ss = new Sports(2,4,2,"Red", 1000);
+		System.out.println(ss.color + ", " + ss.passenger + "," + ss.tire +","+ ss.seat + ", "  + ss.sports);
 	}
-
-}
-@Setter
-@Getter
-class Car {
-	private int passenger;
-	private int tire;
-	private int seat;
-	
-	public Car(int passenger, int tire, int seat) {
-		this.passenger = passenger;
-		this.tire = tire;
-		this.seat = seat;
-	}
-	public Car() {}
-	void run() {
-		System.out.println("Drive!");
-	}
-	void stop() {}
 }
 
-@Setter
-@Getter
-class Sedan extends Car {
-	private String color;
+class Sedan extends Car{
+	String color;
 	
-	public Sedan(String color, int passenger, int tire, int seat) {
-		super(passenger, tire, seat);
+	public Sedan(String color, int passenger, int tire) {
+		super(passenger,tire, 4);  //»óÀ§Å¬·¡½º »ı¼ºÀÚ È£Ãâ
 		this.color = color;
+//		this.passenger = passenger;
+//		this.tire = tire;
+		System.out.println("Sedan() »ı¼ºÀÚ");
+	}
+	
+	public Sedan(int passenger, int tire , int seat, String color) {
+		super(passenger, tire, seat);						// ¸Å°³º¯¼ö¸¦ Áö´Ñ super»ı¼ºÀÚ.
+		this.color = color;									// CarÀÇ ¸Å°³º¯¼ö°¡ ÀÖ´Â »ı¼ºÀÚ¸¦ È£Ãâ.
 	}
 	
 	public Sedan() {}
-	
-	void gas() {}
 }
 
-class Sports extends Sedan {
-	int horsepower;
+class Sports extends Sedan{
+	int sports ;
 	
 	public Sports() {}
-	Sports(String color, int passenger, int tire, int seat, int horsepower) {
-		super(color, passenger, tire, seat);
-		this.horsepower = horsepower;
+	
+	public Sports(int passenger, int tire , int seat, String color, int sports) { 
+		super(passenger, tire, seat, color);			//36¹øÂ° ÁÙ¿¡ ÀÖ´Â SedanÀÇ »ı¼ºÀÚ¸¦ È£Ãâ
+		this.sports = sports;							//º»ÀÎÀÇ ÀÎ½ºÅÏ½º º¯¼öÀÎ sports¿Í ¸Å°³º¯¼öÀÇ sports°¡ µ¿ÀÏ.
 	}
+}
+class Car {
+	int passenger;
+	int tire;
+	int seat;
+	
+	public Car(int passenger, int tire, int seat) { // super(int passenger, int tire, int seat)
+		this.passenger = passenger;					// ¸¦ ÀÌ¿ëÇÏ´Â »ı¼ºÀÚ¿¡ ÇÑÇÏ¿© ÇØ´ç »ı¼ºÀÚ°¡ È£ÃâµÈ´Ù.
+		this.tire = tire;							// sedan¿¡¼­ »ç¿ëÇÏ´Â super() »ı¼ºÀÚ´Â ¸ğµÎ ¸Å°³º¯¼ö¸¦
+		this.seat = seat;							// °¡Áø »ı¼ºÀÚÀÌ±â ¶§¹®¿¡ ÇØ´ç »ı¼ºÀÚ¸¦ È£ÃâÇÔ.
+		System.out.println("Car() »ı¼ºÀÚ");
+	}
+	public Car() {									// super()ÀÇ µğÆúÆ® »ı¼ºÀÚ.
+		this(10,4,4);								// super»ı¼ºÀÚ¿¡¼­ ¸Å°³º¯¼ö°¡ ¾øÀ¸¸é
+		System.out.println("Car()»ı¼ºÀÚ");			// ÇØ´ç »ı¼ºÀÚ°¡ È£ÃâµÈ´Ù.
+	};
+	
+	
 	void run() {
-		System.out.println("Drive!");
+		System.out.println("run()");
 	}
+	void stop() {}
+	
 }
 
-class Bus extends Car {
-	int passengerCount;
-	void passengerLoad() {}
+class Bus extends Car{
+	void passengerLoad() {};
 }
-
-class Truck extends Car {
-	int load;
-	void objectLoad() {}
+class Truck extends Car{
+	void objectLoad() {};
 }

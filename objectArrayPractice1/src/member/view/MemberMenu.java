@@ -1,29 +1,105 @@
 package member.view;
 
 import java.util.Scanner;
-
 import member.model.dao.MemberManager;
+import member.model.dto.Member;
 
 public class MemberMenu {
 	private Scanner sc = new Scanner(System.in);
 	private MemberManager mManager = new MemberManager();
+	Member[] member = new Member[mManager.SIZE];
 	
 	public MemberMenu() {}
 	
 	public void mainMenu(){
-		System.out.println("í˜„ì¬ ë“±ë¡ëœ íšŒì›ìˆ˜ëŠ” " + mManager.memberCount + "ëª… ì…ë‹ˆë‹¤.");
 		
-		int input = sc.nextInt();
-		
+		Outer:
 		while (true) {
+			System.out.println("ÇöÀç µî·ÏµÈ È¸¿ø¼ö´Â " + mManager.memberCount + "¸í ÀÔ´Ï´Ù.");
+			System.out.println("1. »õ È¸¿ø µî·Ï");
+			System.out.println("2. È¸¿ø Á¶È¸");
+			System.out.println("3. È¸¿ø Á¤º¸ ¼öÁ¤");
+			System.out.println("4. È¸¿ø Á¤º¸ Á¤·Ä");
+			System.out.println("5. È¸¿ø »èÁ¦");
+			System.out.println("6. ¸ğµÎ Ãâ·Â");
+			System.out.println("9. ³¡³»±â");
+			
+			int input = sc.nextInt();
+			
 			if (input == 1) {
-				mManager.memberInput();
+				member[mManager.memberCount] = mManager.memberInput();
+				mManager.memberCount++;
+			} else if (input == 2) {
+				mManager.printMember(searchMenu());
+				System.out.println();
+			} else if (input == 3) {
+				modifyMenu();
+			} else if (input == 4) {
+				sortMenu();
+			} else if (input == 5) {
+				mManager.deleteMember();
+			} else if (input == 6) {
+				mManager.printAllMember();
+			} else if (input == 9) {
+				System.out.print("Á¤¸»·Î ³¡³»½Ã°Ú½À´Ï±î? (y/n) : ");
+				
+				while(true) {
+					String endInput = sc.nextLine();
+
+					if (endInput.equalsIgnoreCase("y")) {
+						break Outer;
+					} else if (endInput.equalsIgnoreCase("n")) {
+						System.out.println("½Ã½ºÅÛÀ» ÁøÇàÇÕ´Ï´Ù.");
+					} else
+						System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+				} // end¹® while.
+			}
+			
+		} // while¹® 
+	} //mainMenu ¸Ş¼­µå.
+	
+	public int searchMenu(){
+		while (true) {
+			System.out.println("1. ¾ÆÀÌµğ·Î °Ë»ö");
+			System.out.println("2. ÀÌ¸§À¸·Î °Ë»ö");
+			System.out.println("3. ÀÌ¸ŞÀÏ·Î °Ë»ö");
+			System.out.println("9. ÀÌÀü ¸Ş´º·Î °¡±â");
+			
+			int searchInput = sc.nextInt();
+			if (searchInput == 1) {
+				System.out.print("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+				String inputId = sc.next();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					if(member[i].getId().equals(inputId)) {
+						return i;
+					}
+				}
+				return -1;
+			}
+			else if (searchInput == 2) {
+				String inputName = sc.nextLine();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					if(member[i].getName().equals(inputName)) {
+						return i;
+					} 
+				}
+				return -1;
+			}
+			else if (searchInput == 3) {
+				String inputemail = sc.nextLine();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					if(member[i].getEmail().equals(inputemail)) {
+						return i;
+					} 
+				}
+				return -1;
+			}
+			else if (searchInput == 9) {
+				System.out.println("¸ŞÀÎ¸Ş´º·Î È­¸é ÀÌµ¿ÇÕ´Ï´Ù.");
+				break;
 			}
 		}
-	}
-	
-	public void searchMenu(){
-		
+		return 100;
 	}
 	
 	public void sortMenu(){

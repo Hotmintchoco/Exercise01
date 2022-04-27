@@ -5,17 +5,46 @@ import java.util.Scanner;
 import member.model.dto.Member;
 
 public class MemberManager {
-	Member[] member = new Member[10];
 	public static final int SIZE = 10;
-	public int memberCount = 0;
+	Member[] member = new Member[SIZE];
+	public int memberCount;
 	
-	public void memberInput() {
+	public Member memberInput() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("ì•„ì´ë””ì™€ ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+		System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		String id = sc.nextLine();
+		System.out.println("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		String name = sc.nextLine();
+		System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		String password = sc.nextLine();
+		System.out.println("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		String email = sc.nextLine();
+		System.out.println("¼ºº°À» ÀÔ·ÂÇØÁÖ¼¼¿ä.(³²¼ºÀº M / ¿©¼ºÀº W)");
+		String inputGender = sc.nextLine();
+		System.out.println("¿¬·ÉÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		int age = sc.nextInt();
 		
-		for(int i = 0; i < memberCount; i++) {
-			member[i] = new Member();
+		char gender = inputGender.charAt(0);
+		
+		member[memberCount] = new Member(id, name, password, email, gender, age);
+		return member[memberCount];
+	}
+	public void deleteMember() {
+		
+	}
+	
+	public void printAllMember() {
+		
+	}
+	
+	public void printMember(int index) {
+		if (index == -1) {
+			System.out.println("È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+		} else if (index == 100){
+			System.out.println();
+		} else {
+			System.out.println("È¸¿øÀÇ ¹è¿­ÀÎµ¦½º´Â [" + index + "]ÀÔ´Ï´Ù.");
 		}
 	}
 }
