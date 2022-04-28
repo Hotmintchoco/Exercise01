@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Member {
+public class Member implements Comparable<Member>{
 	private String id;
 	private String name;
 	private String password;
@@ -15,8 +15,9 @@ public class Member {
 	
 	public Member() {}
 	
-	public Member(String id, String name) {
-		this(id, name, null, null,  ' ', 0);
+	public Member(Member member) {
+		this(member.id, member.name, member.password,
+				member.email,  member.gender, member.age);
 	}
 	
 	public Member(String id, String name, String password, String email,
@@ -32,5 +33,10 @@ public class Member {
 	public String memberInfo() {
 		return id + " " + name + " " + password + " " + email +
 				" " + gender + " " + age;
+	}
+
+	@Override
+	public int compareTo(Member m) {
+		return Integer.compare(this.id.length(), m.id.length());
 	}
 }
