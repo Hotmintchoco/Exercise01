@@ -1,5 +1,6 @@
 package member.model.dao;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import member.model.dto.Member;
@@ -12,17 +13,17 @@ public class MemberManager {
 	public Member memberInput() {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		String id = sc.nextLine();
-		System.out.println("ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		String name = sc.nextLine();
-		System.out.println("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		String password = sc.nextLine();
-		System.out.println("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		String email = sc.nextLine();
-		System.out.println("¼ºº°À» ÀÔ·ÂÇØÁÖ¼¼¿ä.(³²¼ºÀº M / ¿©¼ºÀº W)");
+		System.out.println("ì„±ë³„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.(ë‚¨ì„±ì€ M / ì—¬ì„±ì€ W)");
 		String inputGender = sc.nextLine();
-		System.out.println("¿¬·ÉÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+		System.out.println("ì—°ë ¹ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 		int age = sc.nextInt();
 		
 		char gender = inputGender.charAt(0);
@@ -40,11 +41,19 @@ public class MemberManager {
 	
 	public void printMember(int index) {
 		if (index == -1) {
-			System.out.println("È¸¿øÁ¤º¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			System.out.println("íšŒì›ì •ë³´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		} else if (index == 100){
 			System.out.println();
 		} else {
-			System.out.println("È¸¿øÀÇ ¹è¿­ÀÎµ¦½º´Â [" + index + "]ÀÔ´Ï´Ù.");
+			System.out.println("íšŒì›ì˜ ë°°ì—´ì¸ë±ìŠ¤ëŠ” [" + index + "]ì…ë‹ˆë‹¤.");
 		}
+	}
+	
+	public void sortIDAsc() {
+		String[] idList = new String[memberCount];
+		for (int i = 0; i < memberCount; i++) {
+			idList[i] = member[i].getId();
+		}
+		Arrays.sort(idList);
 	}
 }
