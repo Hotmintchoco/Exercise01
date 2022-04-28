@@ -1,16 +1,16 @@
 
 public class Exercise7_18 {
 	
-	static void action(Robot R) {
-		if (R instanceof DanceRoBot) {
-			DanceRoBot dr = (DanceRoBot)R;
+	static void action(Robot r) {
+		if (r instanceof DanceRoBot) {
+			DanceRoBot dr = (DanceRoBot)r;
 			dr.dance();
-		} else if (R instanceof SingRobot) {
-			SingRobot sr = (SingRobot)R;
+		} else if (r instanceof SingRobot) {
+			SingRobot sr = (SingRobot)r;
 			sr.sing();
-		}  else if (R instanceof DrawRobot) {
-			DrawRobot sr = (DrawRobot)R;
-			sr.draw();
+		}  else if (r instanceof DrawRobot) {
+			DrawRobot drt = (DrawRobot)r;
+			drt.draw();
 		}
 	}
 
