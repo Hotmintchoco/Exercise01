@@ -135,6 +135,12 @@ public class MemberMenu {
 					System.out.println(member[i].getId());
 				}
 			}
+			else if (sortInput == 2) {
+				mManager.sortIDDes();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					System.out.println(member[i].getId());
+				}
+			}
 		}
 	}
 	
