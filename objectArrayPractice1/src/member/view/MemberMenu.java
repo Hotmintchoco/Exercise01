@@ -130,13 +130,13 @@ public class MemberMenu {
 			int sortInput = sc.nextInt();
 			
 			if (sortInput == 1) {
-				mManager.sortIDAsc();
+				member = mManager.sortIDAsc();
 				for (int i = 0; i < mManager.memberCount; i++) {
 					System.out.println(member[i].getId());
 				}
 			}
 			else if (sortInput == 2) {
-				mManager.sortIDDes();
+				member = mManager.sortIDDes();
 				for (int i = 0; i < mManager.memberCount; i++) {
 					System.out.println(member[i].getId());
 				}
