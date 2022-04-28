@@ -1,7 +1,9 @@
 package member.model.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import member.model.dto.Member;
@@ -10,7 +12,6 @@ public class MemberManager {
 	public static final int SIZE = 10;
 	Member[] member = new Member[SIZE];
 	public int memberCount;
-	String[] idList = new String[memberCount];
 	
 	public Member memberInput() {
 		Scanner sc = new Scanner(System.in);
@@ -51,17 +52,23 @@ public class MemberManager {
 		}
 	}
 	
-	public void sortIDAsc() {
+	public Member[] sortIDAsc() {
+		List<Member> memberArrList = new ArrayList<Member>(memberCount);
 		for (int i = 0; i < memberCount; i++) {
-			idList[i] = member[i].getId();
+			memberArrList.add(new Member(member[i]));
 		}
-		Arrays.sort(idList);
+		Collections.sort(memberArrList);
+		member = memberArrList.toArray(new Member[memberArrList.size()]);
+		return member;
 	}
 	
-	public void sortIDDes() {
+	public Member[] sortIDDes() {
+		List<Member> memberArrList = new ArrayList<Member>(memberCount);
 		for (int i = 0; i < memberCount; i++) {
-			idList[i] = member[i].getId();
+			memberArrList.add(new Member(member[i]));
 		}
-		Arrays.sort(idList,  Collections.reverseOrder());
+		Collections.sort(memberArrList,  Collections.reverseOrder());
+		member = memberArrList.toArray(new Member[memberArrList.size()]);
+		return member;
 	}
 }
