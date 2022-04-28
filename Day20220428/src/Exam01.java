@@ -6,10 +6,19 @@ public class Exam01 {
 //		animal.eat();
 		
 		Animal animal = new Penguin();
-		animal.eat();
 		
-		Person person = (Person)animal;
-		person.eat();
+		if (animal instanceof Bird) {
+			Bird bird = (Bird)animal;
+			bird.eat();
+			bird.fly();
+		} else if (animal instanceof Mammal) {
+			Mammal mammal = (Mammal)animal;
+			mammal.eat();
+		}
+//		animal.eat();
+//		
+//		Person person = (Person)animal;
+//		person.eat();
 	}
 
 }
@@ -42,6 +51,9 @@ class Person extends Mammal{
 class Bird extends Animal{
 	void eat() {
 		System.out.println("조류가 먹는다.");
+	}
+	void fly() {
+		System.out.println("새가 난다.");
 	}
 }
 
