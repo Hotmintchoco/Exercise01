@@ -71,4 +71,64 @@ public class MemberManager {
 		member = memberArrList.toArray(new Member[memberArrList.size()]);
 		return member;
 	}
+	
+	public Member[] sortAgeAsc() {
+		int[] memberAge = new int[memberCount];
+		for (int i = 0; i < memberCount; i++) {
+			memberAge[i] = member[i].getAge();
+		}
+		
+		Arrays.sort(memberAge);
+		
+		for (int i = 0; i < memberCount; i++) {
+			for (int j = i+1; j < memberCount; j++) {
+				if (memberAge[i] == member[j].getAge()) {
+					Member tmp = member[j];
+					member[j] = member[i];
+					member[i] = tmp;
+				}
+			}
+		}
+		return member;
+	}
+	
+	public Member[] sortAgeDes() {
+		Integer[] memberAge = new Integer[memberCount];
+		for (int i = 0; i < memberCount; i++) {
+			memberAge[i] = member[i].getAge();
+		}
+		
+		Arrays.sort(memberAge, Collections.reverseOrder());
+		
+		for (int i = 0; i < memberCount; i++) {
+			for (int j = i+1; j < memberCount; j++) {
+				if (memberAge[i] == member[j].getAge()) {
+					Member tmp = member[j];
+					member[j] = member[i];
+					member[i] = tmp;
+				}
+			}
+		}
+		return member;
+	}
+	
+	public Member[] sortGenderDes() {
+		Character[] memberChar = new Character[memberCount];
+		for (int i = 0; i < memberCount; i++) {
+			memberChar[i] = member[i].getGender();
+		}
+		
+		Arrays.sort(memberChar);
+		
+		for (int i = 0; i < memberCount; i++) {
+			for (int j = i+1; j < memberCount; j++) {
+				if (memberChar[i] == member[j].getGender()) {
+					Member tmp = member[j];
+					member[j] = member[i];
+					member[i] = tmp;
+				}
+			}
+		}
+		return member;
+	}
 }
