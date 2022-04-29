@@ -120,6 +120,7 @@ public class MemberMenu {
 	
 	public void sortMenu(){
 		while (true) {
+			System.out.println();
 			System.out.println("1. 아이디 오름차순 정렬 출력");
 			System.out.println("2. 아이디 내림차순 정렬 출력");
 			System.out.println("3. 나이 오름차순 정렬 출력");
@@ -132,14 +133,36 @@ public class MemberMenu {
 			if (sortInput == 1) {
 				member = mManager.sortIDAsc();
 				for (int i = 0; i < mManager.memberCount; i++) {
-					System.out.println(member[i].getId());
+					System.out.print(member[i].getId() + " ");
 				}
 			}
 			else if (sortInput == 2) {
 				member = mManager.sortIDDes();
 				for (int i = 0; i < mManager.memberCount; i++) {
-					System.out.println(member[i].getId());
+					System.out.print(member[i].getId() + " ");
 				}
+			}
+			else if (sortInput == 3) {
+				member = mManager.sortAgeAsc();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					System.out.print(member[i].getAge() + " ");
+				}
+			}
+			else if (sortInput == 4) {
+				member = mManager.sortAgeDes();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					System.out.print(member[i].getAge() + " ");
+				}
+			}
+			else if (sortInput == 5) {
+				member = mManager.sortGenderDes();
+				for (int i = 0; i < mManager.memberCount; i++) {
+					System.out.print(member[i].getGender() + " ");
+				}
+			}
+			else if (sortInput == 9) {
+				System.out.println("메인메뉴로 화면 이동합니다.");
+				break;
 			}
 		}
 	}
